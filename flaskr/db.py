@@ -1,7 +1,7 @@
 import sqlite3
-import click
+import click # decorador para linha de comando
 
-from flask import current_app, g
+from flask import current_app, g # utilizado para disponibilidade global de objetos
 
 
 def get_db():

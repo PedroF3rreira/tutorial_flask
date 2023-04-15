@@ -19,7 +19,7 @@ def register():
 		error = None
 
 		if not username:
-			error = "Campo usuario é obrigatorio "
+			error = "Campo usuario é obrigatorio"
 		elif not password:
 			error = "Campo senha é obrigatório"
 
@@ -30,12 +30,13 @@ def register():
 						(username, generate_password_hash(password))
 					)
 				db.commit()
+				error = "usuario registrado com exito"
 			except db.IntegrityError:
 				error = f"Usuario {username} já é registrado"
 			else:
 				redirect(url_for('auth.login'))
 
-			flash(error)
+		flash(error)
 	return render_template('auth/register.html')
 
 
@@ -61,7 +62,7 @@ def login():
 		if error is None:
 			session.clear()
 			session['user_id'] = user['id']
-			return redirect(url_for('index'))
+			return redirect(url_for('blog.index'))
 
 		flash(error)
 
